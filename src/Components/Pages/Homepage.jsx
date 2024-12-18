@@ -22,7 +22,7 @@ function Homepage() {
             <h1 className=" font-serif text-6xl text-white font-bold ">
               Premium Eco-Friendly Products
             </h1>
-            <Link to="products">
+            <Link to="products/jewelery">
               <button className=" rounded-sm text-white bg-accent-green px-10 py-2 font-sans mt-2 ">
                 Shop Now
               </button>
