@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import PropTypes from "prop-types";
 function Navbar({ toggleSidebar }) {
   return (
     <div>
@@ -13,11 +13,16 @@ function Navbar({ toggleSidebar }) {
             <h1 className="font-serif text-5xl">Bazaar</h1>
           </Link>
 
-          <i className="fa fa-cart-shopping text-3xl cursor-pointer"></i>
+          <Link to="/shoppingcart">
+            <i className="fa fa-cart-shopping text-3xl cursor-pointer"></i>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
+Navbar.propTypes = {
+  toggleSidebar: PropTypes.func,
+};
 
 export default Navbar;

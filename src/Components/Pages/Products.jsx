@@ -1,20 +1,15 @@
-import Navbar from "../Navbar";
 import ProductCard from "../ProductCard";
-import Sidebar from "../Sidebar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { CartContext } from "../../Context/CartContext";
 
 function Products() {
-  const [showSidebar, setShowSidebar] = useState(false);
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { cartItems } = useContext(CartContext);
+  console.log(cartItems);
   const { category } = useParams();
   const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
-  function toggleSidebar() {
-    setShowSidebar(!showSidebar);
-    console.log(showSidebar);
-  }
-
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
@@ -30,51 +25,29 @@ function Products() {
   }, [category]);
 
   return (
-    <>
-      <Sidebar
-        showSidebar={showSidebar}
-        toggleSidebar={toggleSidebar}
-      ></Sidebar>
-      <div className="flex flex-col h-full">
-        <Navbar toggleSidebar={toggleSidebar}></Navbar>
-        <div className="p-10 flex-1">
-          <h1 className="font-serif text-3xl">{categoryTitle}</h1>
-          <hr className="w-full border-black"></hr>
-          {(loading && (
-            <div className="h-full flex place-content-center justify-center">
-              <i className="fa fa-circle-o-notch fa-spin text-6xl place-content-center"></i>
-            </div>
-          )) || (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-3 h-min">
-              {productList.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  price={product.price}
-                  image={product.image}
-                  title={product.title}
-                ></ProductCard>
-              ))}
-            </div>
-          )}
-        </div>
+    <div className="flex flex-col h-full">
+      <div className="p-10 flex-1">
+        <h1 className="font-serif text-3xl">{categoryTitle}</h1>
+        <hr className="w-full border-black"></hr>
+        {(loading && (
+          <div className="h-full flex place-content-center justify-center">
+            <i className="fa fa-circle-o-notch fa-spin text-6xl place-content-center"></i>
+          </div>
+        )) || (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-3 h-min">
+            {productList.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                price={product.price}
+                image={product.image}
+                title={product.title}
+              ></ProductCard>
+            ))}
+          </div>
+        )}
       </div>
-    </>
-  );
-
-  return (
-    <>
-      <Sidebar
-        showSidebar={showSidebar}
-        toggleSidebar={toggleSidebar}
-      ></Sidebar>
-      <div>
-        <Navbar toggleSidebar={toggleSidebar}></Navbar>
-        <div className="p-10">
-          <h1 className="font-serif text-3xl">Men&apos;s Fashion</h1>
-          <hr className="w-full border-black"></hr>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 export default Products;

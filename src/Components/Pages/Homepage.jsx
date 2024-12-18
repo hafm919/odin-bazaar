@@ -3,20 +3,14 @@ import "../../styles/Homepage.css";
 import Sidebar from "../Sidebar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../Context/CartContext";
+import { useContext } from "react";
 function Homepage() {
-  const [showSidebar, setShowSidebar] = useState(false);
-  function toggleSidebar() {
-    setShowSidebar(!showSidebar);
-    console.log(showSidebar);
-  }
+  const { cartItems } = useContext(CartContext);
+  console.log(cartItems);
   return (
     <>
-      <Sidebar
-        showSidebar={showSidebar}
-        toggleSidebar={toggleSidebar}
-      ></Sidebar>
       <div className=" h-full flex flex-col">
-        <Navbar toggleSidebar={toggleSidebar}></Navbar>
         <div className="hero flex flex-1 flex-wrap items-center p-12">
           <div className="w-full md:w-1/2">
             <h1 className=" font-serif text-6xl text-white font-bold ">
@@ -30,7 +24,7 @@ function Homepage() {
           </div>
           <img
             src="src/assets/hero-img.png"
-            alt=""
+            alt="img"
             className="w-full md:w-1/2"
           />
         </div>
