@@ -1,5 +1,6 @@
 # Bazaar
 
+![homepage](image.png)
 A responsive and functional shopping cart application built as part of [The Odin Project](https://www.theodinproject.com/) curriculum. This project showcases key concepts in modern React development, including routing, state management, and responsive design.
 
 ![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
